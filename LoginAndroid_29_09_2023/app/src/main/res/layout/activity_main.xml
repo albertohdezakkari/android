@@ -65,7 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:drawableEnd="@drawable/done_icon"/>
+                android:drawableEnd="@drawable/done_icon"
+                android:id="@+id/edtEmail"
+                />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>
@@ -79,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:id="@+id/edtPassword"
                 android:drawableEnd="@drawable/password_icon"/>
 
             <RelativeLayout
@@ -107,7 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Login"
-                app:cornerRadius="32dp"/>
+                app:cornerRadius="32dp"
+                android:id="@+id/btnLogin"
+                />
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
