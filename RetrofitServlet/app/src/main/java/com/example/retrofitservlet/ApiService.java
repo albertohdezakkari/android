@@ -6,6 +6,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -18,7 +19,14 @@ public interface ApiService {
               "Accept: application/json",
               "Content-Type: application/json"
       })
-      @GET("MyServlet")
-      Call<MyData> getMyData(@Query("id") String id);
+          @GET("MyServlet")
+          Call<MyData> getMyData(@Query("id") String id);
+
+        @GET("MyServlet")
+        Call<MyData> getMyDataMovies(@Query("ACTION") String action);
+
+
+        @GET("MyServlet/{id}")
+        Call<MyData> getMyDataURL(@Path("id") String id);
 
 }
