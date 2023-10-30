@@ -10,15 +10,22 @@ import android.widget.Toast;
 
 import com.example.loginandroid_29_09_2023.actions.ServicePeliculas;
 import com.example.loginandroid_29_09_2023.actions.ViewPeliculas;
+import com.example.loginandroid_29_09_2023.beans.User;
+import com.example.loginandroid_29_09_2023.login_user.ContractLoginUser;
+import com.example.loginandroid_29_09_2023.login_user.LoginUserPresenter;
 
 public class MainActivity extends AppCompatActivity
-                        implements ViewPeliculas {
+                        implements ViewPeliculas, ContractLoginUser.View {
     private EditText edtEmail;
     private EditText edtPassword;
     private Button btnLogin;
 
     private ServicePeliculas sPeliculas =
                         new ServicePeliculas(this);
+
+    private LoginUserPresenter presenter =
+            new LoginUserPresenter(this);
+
     /* PATRÓN SINGLETON*/
     private static MainActivity mainActivity = null;
     public static MainActivity getInstance(){
@@ -41,13 +48,27 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 //Toast.makeText(mainActivity, message, Toast.LENGTH_SHORT).show();
-                sPeliculas.getDatosPeliculas();
+                //sPeliculas.getDatosPeliculas();
+                User user = new User();
+                user.setUsername("akkarihdez@gmail.com");
+                user.setToken("1234");
+                presenter.login(user);
             }
         });
     }
 
     @Override
     public void showPeliculas(String message) {
+
+    }
+
+    @Override
+    public void successLogin(User user) {
+        Toast.makeText(mainActivity, user.getUsername(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void failureLogin(String err) {
 
     }
 }
