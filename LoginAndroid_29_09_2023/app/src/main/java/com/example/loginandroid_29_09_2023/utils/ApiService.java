@@ -15,11 +15,17 @@ public interface ApiService {
               "Content-Type: application/json"
       })
 
-        @GET("MyServlet")
-        Call<MyData> getDataUser(@Query("ACTION") String action);
-
+      Call<MyData> getDataUser(@Query("ACTION") String action);
+      /*@GET("MyServlet")
+        Call<MyData> getDataUser(@Query("ACTION") String action,
+                                 @Query("EMAIL") String email,
+                                 @Query("PASSWORD") String pass);
+*/
         @GET("MyServlet")
         Call<DataMovies> getDataMovies(@Query("ACTION") String action);
+
+        @GET("MyServlet")
+        Call<DataMovies> getDataMovies2(@Query("ACTION") String action);
 
         /*
         @GET("MyServlet")
