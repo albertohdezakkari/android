@@ -7,6 +7,16 @@ public class Pelicula {
     private String director;
     private int anyo;
 
+    private String urlImagen;
+
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+
     // Constructor, getters y setters (omitiendo por simplicidad)
 
     public int getId() {

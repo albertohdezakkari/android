@@ -21,8 +21,11 @@ public class LstMoviesModel implements ContractListMovies.Model {
     @Override
     public void moviesAPI(String filtro,
                           OnLstMoviesListener respuestaMovies) {
-        ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "/untitled/").
+        /*ApiService apiService = RetrofitCliente.getClient("http://" + IP_BASE + "/untitled/").
+                create(ApiService.class);*/
+        ApiService apiService = RetrofitCliente.getClient(ApiService.URL).
                 create(ApiService.class);
+
         Call<DataMovies> call = apiService.getDataMovies ("MOVIE.LST_PELICULA");
         call.enqueue(new Callback<DataMovies>() {
             @Override
