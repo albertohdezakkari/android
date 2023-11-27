@@ -1,5 +1,7 @@
 package com.example.loginandroid_29_09_2023.lstMov.model;
 
+import android.util.Log;
+
 import com.example.loginandroid_29_09_2023.lstMov.ContractListMovies;
 import com.example.loginandroid_29_09_2023.lstMov.presenter.LstMoviesPresenter;
 import com.example.loginandroid_29_09_2023.lst_movies_2.DataMovies;
@@ -11,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LstMoviesModel implements ContractListMovies.Model {
-    private static final String IP_BASE = "169.254.225.61:8080";
+    private static final String IP_BASE = "10.0.0.2:8080";
     private LstMoviesPresenter presenter;
 
     public LstMoviesModel(LstMoviesPresenter presenter){
@@ -38,7 +40,7 @@ public class LstMoviesModel implements ContractListMovies.Model {
 
             @Override
             public void onFailure(Call<DataMovies> call, Throwable t) {
-
+                Log.d("error", t.getMessage());
             }
         });
     }
