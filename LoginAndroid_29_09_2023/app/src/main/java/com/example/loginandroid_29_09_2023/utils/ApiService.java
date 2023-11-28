@@ -1,7 +1,7 @@
 package com.example.loginandroid_29_09_2023.utils;
 
 import com.example.loginandroid_29_09_2023.login_user.model.data.MyData;
-import com.example.loginandroid_29_09_2023.lst_movies_2.DataMovies;
+import com.example.loginandroid_29_09_2023.lstMov.data.DataMovies;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    public static final String URL ="http://172.22.6.30:8080/untitled_war_exploded/";
+    public static final String URL ="http://192.168.43.180:8080/untitled_war_exploded/";
       @Headers({
               "Accept: application/json",
               "Content-Type: application/json"
@@ -22,6 +22,12 @@ public interface ApiService {
                                  @Query("EMAIL") String email,
                                  @Query("PASSWORD") String pass);
 */
+/*      @GET("MyServlet")
+        Call<ArrayList<Movie>> getMovies(@Query("genre") String genre,
+                                    @Query("year") Integer year,
+                                    @Query("director") String director);
+      }*/
+
         @GET("MyServlet")
         Call<DataMovies> getDataMovies(@Query("ACTION") String action);
 

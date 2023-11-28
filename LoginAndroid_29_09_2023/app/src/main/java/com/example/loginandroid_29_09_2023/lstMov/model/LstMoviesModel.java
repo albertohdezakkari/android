@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.loginandroid_29_09_2023.lstMov.ContractListMovies;
 import com.example.loginandroid_29_09_2023.lstMov.presenter.LstMoviesPresenter;
-import com.example.loginandroid_29_09_2023.lst_movies_2.DataMovies;
+import com.example.loginandroid_29_09_2023.lstMov.data.DataMovies;
 import com.example.loginandroid_29_09_2023.utils.ApiService;
 import com.example.loginandroid_29_09_2023.utils.RetrofitCliente;
 

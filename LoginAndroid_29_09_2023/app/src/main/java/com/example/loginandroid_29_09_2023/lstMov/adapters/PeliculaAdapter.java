@@ -22,10 +22,23 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHo
         this.peliculas = peliculas;
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Pelicula pelicula);
+    }
+
+    private  OnItemClickListener listener;
+
+    // Método para establecer el listener
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row, parent, false);
-        return new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_card,
+                            parent,
+                        false);
+        return new ViewHolder(view, listener);
     }
 
     @Override
@@ -36,6 +49,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHo
         holder.tvDirector.setText(pelicula.getDirector());
         holder.tvAnyo.setText(String.valueOf(pelicula.getAnyo()));
         Glide.with(context).load(pelicula.getUrlImagen()).into(holder.ivPeliculaImagen);
+        holder.bind(pelicula);
     }
 
     @Override
@@ -46,14 +60,30 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvTitulo, tvDescripcion, tvDirector, tvAnyo;
         public ImageView ivPeliculaImagen;
+        private Pelicula currentPelicula;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             tvTitulo = itemView.findViewById(R.id.tvTitulo);
             tvDescripcion = itemView.findViewById(R.id.tvDescripcion);
             tvDirector = itemView.findViewById(R.id.tvDirector);
             tvAnyo = itemView.findViewById(R.id.tvAnyo);
             ivPeliculaImagen = itemView.findViewById(R.id.ivPeliculaImagen);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(currentPelicula);
+                        }
+                    }
+                }
+            });
+            }
+            public void bind(Pelicula pelicula) {
+                currentPelicula = pelicula;
+            }
         }
     }
-}
+
